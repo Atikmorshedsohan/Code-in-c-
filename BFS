@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector <int> v[1001];
+bool vis[1001];
+
+int main()
+{
+    int n,i;
+    cin >> n;
+    
+    for(i=1;i<n;i++)
+    {
+        int a,b;
+        cin >> a >> b;
+        v[a].push_back(b);
+        v[b].push_back(a);
+    }
+    queue <int> q;
+    q.push(1);
+    while(!q.empty())
+    {
+        int i=q.front();
+        vis[i]=true;
+        q.pop();
+        cout << i << ' ';
+        for(auto j : v[i])
+        {
+            if(vis[j]==false )
+            {
+                q.push(j);
+            }
+        }
+    }
+    return 0;
+}
